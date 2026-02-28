@@ -31,7 +31,7 @@ def main():
     st.header("Turn Your Image to Audio Story")
     uploaded_file = st.file_uploader("Select an Image...")
 
- if uploaded_file is not None:
+if uploaded_file is not None:
         print(uploaded_file)
         bytes_data = uploaded_file.getvalue()
         with open(uploaded_file.name, "wb") as file:
@@ -56,7 +56,7 @@ def main():
 print("Title: Age Classification using ViT")
 
         # Play button
-     if st.button("Play Audio"):
+if st.button("Play Audio"):
             # Get the audio array and sample rate
             audio_array = audio_data["audio"]
             sample_rate = audio_data["sampling_rate"]

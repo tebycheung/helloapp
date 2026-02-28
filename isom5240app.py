@@ -4,6 +4,7 @@
 import streamlit as st
 from transformers import pipeline
 
+# function part
 # img2text
 def img2text(url):
     image_to_text_model = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
@@ -49,13 +50,17 @@ def main():
         #Stage 3: Story to Audio data
         st.text('Generating audio data...')
         audio_data =text2audio(story)
-           # Play button
+
+        # Play button
         if st.button("Play Audio"):
             # Get the audio array and sample rate
             audio_array = audio_data["audio"]
             sample_rate = audio_data["sampling_rate"]
-                # Play audio directly using Streamlit
+
+            # Play audio directly using Streamlit
             st.audio(audio_array,
                      sample_rate=sample_rate)
-    if __name__ == "__main__":
-        main()
+
+
+if __name__ == "__main__":
+    main()

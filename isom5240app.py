@@ -66,8 +66,7 @@ age_classifier = pipeline("image-classification",
                           model="nateraw/vit-age-classifier")
 
             # Play audio directly using Streamlit
-            st.audio(audio_array,
-                     sample_rate=sample_rate)
+st.audio(audio_array,sample_rate=sample_rate)
 image_name = "middleagedMan.jpg"
 image_name = Image.open(image_name).convert("RGB")
 

@@ -57,5 +57,5 @@ def main():
                 # Play audio directly using Streamlit
             st.audio(audio_array,
                      sample_rate=sample_rate)
-            if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()

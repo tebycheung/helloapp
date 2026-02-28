@@ -3,10 +3,7 @@
 # import part
 import streamlit as st
 from transformers import pipeline
-from PIL import Image
-import streamlit as st
 
-# function part
 # img2text
 def img2text(url):
     image_to_text_model = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
@@ -31,7 +28,7 @@ def main():
     st.header("Turn Your Image to Audio Story")
     uploaded_file = st.file_uploader("Select an Image...")
 
-if uploaded_file is not None:
+    if uploaded_file is not None:
         print(uploaded_file)
         bytes_data = uploaded_file.getvalue()
         with open(uploaded_file.name, "wb") as file:
@@ -52,31 +49,13 @@ if uploaded_file is not None:
         #Stage 3: Story to Audio data
         st.text('Generating audio data...')
         audio_data =text2audio(story)
-# Streamlit UI
-print("Title: Age Classification using ViT")
-
-        # Play button
-if st.button("Play Audio"):
+           # Play button
+        if st.button("Play Audio"):
             # Get the audio array and sample rate
             audio_array = audio_data["audio"]
             sample_rate = audio_data["sampling_rate"]
-# Load the age classification pipeline
-# The code below should be placed in the main part of the program
-age_classifier = pipeline("image-classification",
-                          model="nateraw/vit-age-classifier")
-
-            # Play audio directly using Streamlit
-st.audio(audio_array,sample_rate=sample_rate)
-image_name = "middleagedMan.jpg"
-image_name = Image.open(image_name).convert("RGB")
-
-# Classify age
-age_predictions = age_classifier(image_name)
-print(age_predictions)
-age_predictions = sorted(age_predictions, key=lambda x: x['score'], reverse=True)
-
-if __name__ == "__main__":
+                # Play audio directly using Streamlit
+            st.audio(audio_array,
+                     sample_rate=sample_rate)
+            if __name__ == "__main__":
     main()
-# Display results
-print("Predicted Age Range:")
-print(f"Age range: {age_predictions[0]['label']}")
